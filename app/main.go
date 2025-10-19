@@ -21,7 +21,8 @@ func handleConnection(conn net.Conn) {
 		if err != nil {
 			return
 		}
-		cmd := strings.TrimSpace(strings.ToUpper(line))
+		cmd := strings.ToUpper(strings.TrimRight(line, "\r\n "))
+		//cmd := strings.TrimSpace(strings.ToUpper(line))
 		if cmd == "PING" {
 			conn.Write([]byte("+PONG\r\n"))
 		} else {
